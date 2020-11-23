@@ -41,9 +41,10 @@ public class StaffService {
         //System.out.println(s);
         //SI0000077
         //Staff staff = fetchStaffById(Integer.parseInt(fuShiRestult.getDescribe()));
-        Staff staff = fetchStaffById(85);
+        /*Staff staff = fetchStaffById(85);
+        System.out.println(staff);*/
         //  System.out.println(staff);
-       // fetchAllStaffPage();
+        fetchAllStaffPage();
         //fetchAllStaffPage();
         // deleteStaff("id = 80");
         //FuShiRestult restult = deleteStaff("id = 1");

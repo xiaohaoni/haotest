@@ -69,11 +69,11 @@ public class GetByFuncService {
         switch (push.getTableName()) {
             //入
             case "[InVehicle]":
-               // getIntoCarRecordByRid("rid = " + push.getRid());
+                // getIntoCarRecordByRid("rid = " + push.getRid());
                 break;
             //出
             case "[OutVehicle]":
-              //  getOutCarRecordPage("rid = " + push.getRid());
+                //  getOutCarRecordPage("rid = " + push.getRid());
                 break;
             default:
                 deletePullData(push.getId());
@@ -116,12 +116,12 @@ public class GetByFuncService {
     }
 
     public static void getIntoCarRecordByRid(Integer where) {
-        getIntoCarRecordPage("id >"+where, 1000, 1, "id", true, 0);
+        getIntoCarRecordPage("id >" + where, 1000, 1, "id", true, 0);
     }
 
     public static void main(String[] args) {
-        //getIntoCarRecordByRid(0);
-        getOutCarRecordPage("id > 0");
+         getIntoCarRecordByRid(0);
+       // getOutCarRecordPage("id > 1100 and outTime > 2020-11-09");
         //fetchGetByFunData();
     }
 

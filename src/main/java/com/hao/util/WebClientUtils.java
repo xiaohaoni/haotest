@@ -17,7 +17,7 @@ import java.util.Map;
  * @date 2020-07-24 11:58 http://vddkpw.natappfree.cc/api/
  **/
 public class WebClientUtils {
-    private static final String HOST = "http://115.238.97.212:60009/api/";
+    private static final String HOST = "http://60.191.9.58:60009/api/";
 
     //  private static final String HOST = "http://local.yunzhiyuan100.com:11228/api/";
     public static String postHttp(String url, Map<String, Object> paramMap) throws Exception {

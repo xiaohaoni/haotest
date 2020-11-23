@@ -25,5 +25,8 @@ public class Client {
         c2.addChild(leaf4);
         //调用根对象的输出功能来输出整课树
         root.printStruct("");
+        System.out.println("------------------");
+        root.removeChild(c1);
+        root.printStruct("");
     }
 }

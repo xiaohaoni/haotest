@@ -1,5 +1,7 @@
 package com.hao.mode.combination;
 
+import java.util.List;
+
 /**
  * 抽象的组件对象
  *
@@ -8,6 +10,31 @@ package com.hao.mode.combination;
  * @date 2020-11-16 09:46
  **/
 public abstract class Component {
+
+    /**
+     * 记录父组件对象
+     * */
+    private Component parent = null;
+
+    /**
+     * 获取一个组件的对象 get set方法
+     *
+     * */
+    public Component getParent() {
+        return parent;
+    }
+
+    public void setParent(Component parent) {
+        this.parent = parent;
+    }
+
+    /**
+     * 返回某个组件的子组件对象
+     * @return 某个组件的子组件对象
+     * */
+    public List<Component> getChildren(){
+        throw new UnsupportedOperationException("对象不支持这个功能");
+    }
 
     /**
      * 输出组件自身的名称

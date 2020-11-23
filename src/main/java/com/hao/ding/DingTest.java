@@ -24,23 +24,34 @@ public class DingTest {
 
     /**
      * appid
+     * 西湖大屏：951654080
+     * 测试：949224878
      */
     static final String AGENTID = "951654080";
 
     /**
      * appkey
+     * 西湖大屏 suitedpxwwc9whwxy6duv
+     * 测试 suite9tqghapfkdshgqfb
      */
     static final String CUSTOM_KEY = "suitedpxwwc9whwxy6duv";
 
     /**
      * appSecret
+     * 西湖大屏：xAc9TVxejiDjqSRTxE1HC6GafNAC2khF9tPJkFx0Twq9VwtaJbnHj1cmZ7Ggwm84
+     * 测试：2ycnvCRImThKqCR_-L3lLXn75W0fJ1aougI0a3MgQ7jjhQPI44MJCnNQWvxQJR4F
      */
     static final String CUSTOM_SECRET = "xAc9TVxejiDjqSRTxE1HC6GafNAC2khF9tPJkFx0Twq9VwtaJbnHj1cmZ7Ggwm84";
+    //dinge276cd0881e4856635c2f4657eb6378f
+    /**
+     * 测试：dinga037a072bf3af42fbc961a6cb783455b
+     * 西湖：dinge276cd0881e4856635c2f4657eb6378f
+     * */
     static final String CORP_ID = "dinge276cd0881e4856635c2f4657eb6378f";
     //注意ticket参数是通过dingOne钉钉云接口获取的，且做好缓存 @see http://118.178.91.15/api/dingone/corpInfo?corpId=ding099060891023dbff35c2f4657eb6378f
     static final String ticket = "7PQuh5pHAAKPGzjXJNYRt7IFkeQrqdIER2jBRhJnXsu5g33dxOgjAs2JDhYfahAzukjHTv3jKMEYT0S165PuYW";
 
-    static final String token = "010426a721d132a6b19acb23325527fe";
+    static final String token = "c87a9df78cef3eb6b125243a318634dd";
 
 
     static String getToken() throws ApiException {
@@ -81,21 +92,8 @@ public class DingTest {
     }
 
     public static void main(String[] args) throws ApiException {
-
-        List<SchoolDataStatisticsBO> list = new ArrayList<>();
-        Long i = 1L;
-        List<SchoolDataStatisticsBO> newStatisticsBOList = new ArrayList<>();
-
-        do {
-            newStatisticsBOList = schoolGet(i);
-            list.addAll(newStatisticsBOList);
-            i++;
-        } while (newStatisticsBOList.size() > 0);
-
-        for (SchoolDataStatisticsBO statisticsBO : list) {
-            System.out.println(statisticsBO);
-        }
-
+        //getUserCreatTableData();
+        accordingToContextData("PROC-87EE35B5-AF64-44DF-8A83-BCB188C7A29A");
     }
 
     static List<SchoolDataStatisticsBO> schoolGet(Long pageNum) throws ApiException {
@@ -159,10 +157,10 @@ public class DingTest {
         System.out.println(rsp.getBody());
     }
 
-    static void accordingToContextData() throws ApiException {
+    static void accordingToContextData(String formCode) throws ApiException {
         DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/collection/instance/list");
         OapiCollectionInstanceListRequest req = new OapiCollectionInstanceListRequest();
-        req.setFormCode("PROC-698046D7-57AD-435A-AD93-EBF52E29D56B");
+        req.setFormCode(formCode);
         //req.setActionDate("2020-02-02");
         req.setOffset(0L);
         req.setSize(20L);
