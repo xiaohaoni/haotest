@@ -1,14 +1,13 @@
 package com.hao.ding;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.api.DefaultDingTalkClient;
 import com.dingtalk.api.DingTalkClient;
 import com.dingtalk.api.request.*;
 import com.dingtalk.api.response.*;
-import com.hao.ding.domain.EducationBureauBO;
-import com.hao.ding.domain.SchoolDataStatisticsBO;
-import com.hao.ding.domain.SchoolTypeDataBO;
+import com.hao.ding.domain.*;
 import com.taobao.api.ApiException;
 import sun.misc.Request;
 
@@ -46,12 +45,12 @@ public class DingTest {
     /**
      * 测试：dinga037a072bf3af42fbc961a6cb783455b
      * 西湖：dinge276cd0881e4856635c2f4657eb6378f
-     * */
+     */
     static final String CORP_ID = "dinge276cd0881e4856635c2f4657eb6378f";
     //注意ticket参数是通过dingOne钉钉云接口获取的，且做好缓存 @see http://118.178.91.15/api/dingone/corpInfo?corpId=ding099060891023dbff35c2f4657eb6378f
     static final String ticket = "7PQuh5pHAAKPGzjXJNYRt7IFkeQrqdIER2jBRhJnXsu5g33dxOgjAs2JDhYfahAzukjHTv3jKMEYT0S165PuYW";
 
-    static final String token = "c87a9df78cef3eb6b125243a318634dd";
+    static final String token = "b99ff5bb77b935b18d57615706cede06";
 
 
     static String getToken() throws ApiException {
@@ -92,9 +91,30 @@ public class DingTest {
     }
 
     public static void main(String[] args) throws ApiException {
+
+       //getToken();
         //getUserCreatTableData();
-        accordingToContextData("PROC-87EE35B5-AF64-44DF-8A83-BCB188C7A29A");
+        //accordingToContextData("PROC-066BFD7E-F706-4B0A-B569-D72927FF93F1");
+         //accordingToContextData("PROC-87EE35B5-AF64-44DF-8A83-BCB188C7A29A");
+        schoolGet(100L);
     }
+
+
+
+    /**
+     * 获取智能填写所有的表单
+     * */
+    List<CreateTableJson> getCreateTableJsonList() throws ApiException {
+        String body = getUserCreatTableData();
+        JSONObject jsonObject = JSONObject.parseObject(body);
+        if (jsonObject.getInteger("errcode")==0){
+            JSONObject resultJson = JSONObject.parseObject(jsonObject.getString("result"));
+            return JSONArray.parseArray(resultJson.getString("list"),CreateTableJson.class);
+        }else {
+            throw new NullPointerException("can not get data");
+        }
+    }
+
 
     static List<SchoolDataStatisticsBO> schoolGet(Long pageNum) throws ApiException {
         DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/edu/sub/data/get");
@@ -145,7 +165,7 @@ public class DingTest {
         System.out.println(rsp.getBody());
     }
 
-    static void getUserCreatTableData() throws ApiException {
+    public  static String getUserCreatTableData() throws ApiException {
         DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/collection/form/list");
         OapiCollectionFormListRequest req = new OapiCollectionFormListRequest();
         //填表类型。0表示通用智能填表，1表示教育版填表
@@ -155,9 +175,10 @@ public class DingTest {
         req.setSize(200L);
         OapiCollectionFormListResponse rsp = client.execute(req, token);
         System.out.println(rsp.getBody());
+        return rsp.getBody();
     }
 
-    static void accordingToContextData(String formCode) throws ApiException {
+    static String accordingToContextData(String formCode) throws ApiException {
         DingTalkClient client = new DefaultDingTalkClient("https://oapi.dingtalk.com/topapi/collection/instance/list");
         OapiCollectionInstanceListRequest req = new OapiCollectionInstanceListRequest();
         req.setFormCode(formCode);
@@ -166,6 +187,7 @@ public class DingTest {
         req.setSize(20L);
         OapiCollectionInstanceListResponse rsp = client.execute(req, token);
         System.out.println(rsp.getBody());
+        return  rsp.getBody();
     }
 
     /**

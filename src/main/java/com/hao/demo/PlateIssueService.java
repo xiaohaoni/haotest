@@ -42,7 +42,7 @@ public class PlateIssueService {
         Long endTime = 1603756733000L;*/
         //deferPlate("京B11180", beginTime, endTime);
         // updatePlate("粤BDQ133","粤BDQ233");
-        FsPlateToken fsPlateToken = fetchPlate("plate = '苏WWWWWO'");
+        FsPlateToken fsPlateToken = fetchPlate("plate = '浙WWWWWW'");
         System.out.println(fsPlateToken);
         if (fsPlateToken == null) {
             System.out.println("!");

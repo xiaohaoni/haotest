@@ -17,6 +17,7 @@ public class ExceptionTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("异常后面执行");
         return str;
     }
 

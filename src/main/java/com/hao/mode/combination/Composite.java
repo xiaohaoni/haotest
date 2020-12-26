@@ -15,7 +15,7 @@ public class Composite extends Component {
      * 用来存储组合对象中包含的子组件对象
      *
      * */
-    private List<Component> childComponents = null;
+    public List<Component> childComponents = null;
     /**
      * 组合对象的名字
      * */

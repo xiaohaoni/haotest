@@ -2,6 +2,7 @@ package com.hao.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -59,9 +60,11 @@ public class ToStringUtlis {
     }
 
     public static void main(String[] args) {
-        //SI0000077
-       // System.out.println(dateLongStr(1595865600000L));
-        System.out.println(getUIdToString());
+        //晚归时间
+        Calendar calendar = Calendar.getInstance();
+       // int i = calendar.get(Calendar.DAY_OF_WEEK);
+        System.out.println(calendar.getWeekYear());
+        System.out.println(calendar);
 
     }
 }
