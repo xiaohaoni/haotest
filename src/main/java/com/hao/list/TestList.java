@@ -1,7 +1,9 @@
 package com.hao.list;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 测试
@@ -12,13 +14,15 @@ import java.util.Date;
  **/
 public class TestList {
     public static void main(String[] args) {
+        int i = 1;
+        boolean result = true;
+        while (result) {
+            i++;
+            System.out.println(i);
+            if (i > 4) {
+                result = false;
+            }
 
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(new Date());
-        cal.set(Calendar.HOUR_OF_DAY, 20);
-        cal.set(Calendar.MINUTE, 40);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        System.out.println(cal.getTime().getTime());
+        }
     }
 }

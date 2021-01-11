@@ -14,10 +14,8 @@ import java.util.Map;
  **/
 public class ListDemo {
     public static void main(String[] args) {
-        Map<Integer,Integer> map = new HashMap<>();
-        map.put(1,1);
-        map.put(2,1);
-        map.get(1);
+        calcul(112);
+        System.out.println(res);
 
 
     }
