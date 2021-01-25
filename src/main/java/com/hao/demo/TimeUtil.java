@@ -62,10 +62,10 @@ public class TimeUtil {
         System.out.println(cal.getTimeInMillis());
         return cal.getTime();
     }
-  //12000000
+
+    //12000000
     public static void main(String[] args) {
-        Long timeStamp = getFirstDayOfMonthDate(new Date()).getTime();
-        System.out.println(timeStamp+12000000);
+        System.out.println(new DateTime().getMillisOfDay());
 
     }
 

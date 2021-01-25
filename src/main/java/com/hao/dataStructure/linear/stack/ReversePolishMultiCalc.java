@@ -1,5 +1,6 @@
 package com.hao.dataStructure.linear.stack;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +34,9 @@ public class ReversePolishMultiCalc {
      * 括号
      */
     static final int LEVEL_HIGH = Integer.MAX_VALUE;
+
+
+    private static volatile Double resultDouble = 0.0;
 
 
     static Stack<String> stack = new Stack<>();
@@ -98,7 +102,7 @@ public class ReversePolishMultiCalc {
         if (!isNumber(s.charAt(0) + "")) {
             throw new RuntimeException("data illeagle,start not with a number");
         }
-
+        //去除所有空串
         s = replaceAllBlank(s);
 
         String each;
@@ -130,7 +134,8 @@ public class ReversePolishMultiCalc {
                         data.add(stack.pop());
                     }
                 }
-                start = i;    //前一个运算符的位置
+                //前一个运算符的位置
+                start = i;
             } else if (i == s.length() - 1 || isSymbol(s.charAt(i + 1) + "")) {
                 each = start == 0 ? s.substring(start, i + 1) : s.substring(start + 1, i + 1);
                 if (isNumber(each)) {
@@ -154,30 +159,27 @@ public class ReversePolishMultiCalc {
      * @param list
      * @return
      */
-    public static Double doCalc(List<String> list) {
-        Double d = 0d;
+    public static void doCalc(List<String> list) {
         if (list == null || list.isEmpty()) {
-            return null;
+            return;
         }
         if (list.size() == 1) {
-            System.out.println(list);
-            d = Double.valueOf(list.get(0));
-            return d;
-        }
-        ArrayList<String> list1 = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            list1.add(list.get(i));
-            if (isSymbol(list.get(i))) {
-                Double d1 = doTheMath(list.get(i - 2), list.get(i - 1), list.get(i));
-                list1.remove(i);
-                list1.remove(i - 1);
-                list1.set(i - 2, d1 + "");
-                list1.addAll(list.subList(i + 1, list.size()));
-                break;
+            resultDouble = Double.valueOf(list.get(0));
+        } else {
+            ArrayList<String> list1 = new ArrayList<>();
+            for (int i = 0; i < list.size(); i++) {
+                list1.add(list.get(i));
+                if (isSymbol(list.get(i))) {
+                    Double d1 = doTheMath(list.get(i - 2), list.get(i - 1), list.get(i));
+                    list1.remove(i);
+                    list1.remove(i - 1);
+                    list1.set(i - 2, d1 + "");
+                    list1.addAll(list.subList(i + 1, list.size()));
+                    break;
+                }
             }
+            doCalc(list1);
         }
-        doCalc(list1);
-        return d;
     }
 
     /**
@@ -207,15 +209,26 @@ public class ReversePolishMultiCalc {
                 result = null;
         }
         return result;
+    }
 
+    public static Double getResultDouble(String math){
+        try {
+            doCalc(doMatch(math));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        BigDecimal b = new BigDecimal(resultDouble);
+        resultDouble = b.setScale(3, BigDecimal.ROUND_HALF_UP).doubleValue();
+        return resultDouble;
     }
 
     public static void main(String[] args) {
         //String math = "9+(3-1)*3+10/2";
-        // String math = "12.8 + (2 - 3.55)*4+10/5.0";
-        String math = "8.3*9.2";
+        String math = "3.265X3.26598";
+        //String math = "8.3*9.2";
         try {
-            doCalc(doMatch(math));
+            Double result = getResultDouble(math);
+            System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
         }

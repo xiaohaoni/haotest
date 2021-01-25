@@ -27,7 +27,7 @@ public class PlateIssueService {
      * {"State":{"IsError":false,"RecordAffected":0,"IsSucess":true,"Code":0},"Model":{"OrganizationName":"默认部门","IdentNumber":0,"Email":"","Address":"","UseMode":1,"TcmName":"月租卡A","OrganizationId":"84C748FD-1F73-4A8F-A9D2-BFB43AC68D0C","Remark":"","TcmCode":"24","TokenType":0,"SubSystem":"1000000000","StaffStatus":0,"AccountBalance":0.0000,"ID":66,"TokenId":"浙A219ZW","MobileNo":"","SerialNo":"浙A219ZW","RoomNo":"","OperName":"岗亭","Gid":"32BAB824-392F-41AC-90BF-32217C743C7A","StaffId":"dc098a69-afff-4f6f-9898-b3b0f9196e20","RegDate":"2020-10-05T12:49:54","IssueDate":"2020-10-05T12:50:00","Rid":"ee664575-8330-4216-878e-5bd9c558d966","TelphoneNo":"","EndDate":"2029-12-31T23:59:59","StaffName":"陈方有","BeginDate":"2020-10-05T00:00:00","Plate":"浙A219ZW","LotNo":"","AuthDevice":"11111111","State":1,"TcmId":"C97611CE-C6EA-4582-9680-55934B79F9F7","TcmType":2,"IdNo":"","StaffNo":"SI0000067"},"Models":[{"OrganizationName":"默认部门","IdentNumber":0,"Email":"","Address":"","UseMode":1,"TcmName":"月租卡A","OrganizationId":"84C748FD-1F73-4A8F-A9D2-BFB43AC68D0C","Remark":"","TcmCode":"24","TokenType":0,"SubSystem":"1000000000","StaffStatus":0,"AccountBalance":0.0000,"ID":66,"TokenId":"浙A219ZW","MobileNo":"","SerialNo":"浙A219ZW","RoomNo":"","OperName":"岗亭","Gid":"32BAB824-392F-41AC-90BF-32217C743C7A","StaffId":"dc098a69-afff-4f6f-9898-b3b0f9196e20","RegDate":"2020-10-05T12:49:54","IssueDate":"2020-10-05T12:50:00","Rid":"ee664575-8330-4216-878e-5bd9c558d966","TelphoneNo":"","EndDate":"2029-12-31T23:59:59","StaffName":"陈方有","BeginDate":"2020-10-05T00:00:00","Plate":"浙A219ZW","LotNo":"","AuthDevice":"11111111","State":1,"TcmId":"C97611CE-C6EA-4582-9680-55934B79F9F7","TcmType":2,"IdNo":"","StaffNo":"SI0000067"}]}
      */
     public static void main(String[] args) {
-       /* List<String> device = new ArrayList<>();
+        List<String> device = new ArrayList<>();
         device.add("1");
         device.add("2");
         device.add("3");
@@ -36,12 +36,15 @@ public class PlateIssueService {
         device.add("6");
         device.add("7");
         device.add("8");
-        //updateParkModify("京B11180", 1603238333000L, 1603187933000L, device);
-      //  savePlateIssue();
-        Long beginTime = 1603583933000L;
-        Long endTime = 1603756733000L;*/
+        //2021-01-13 9:00:00
+        Long beginTime = 1610445600000L;
+        // 2021-01-13 12:00:00
+        Long endTime = 1610452800000L;
+        updateParkModify("浙A3FR26", beginTime, endTime, device);
+        //  savePlateIssue();
+
         //deferPlate("京B11180", beginTime, endTime);
-        updatePlate("粤BDQ133","粤BDQ233");
+        // updatePlate("粤BDQ133","粤BDQ233");
         FsPlateToken fsPlateToken = fetchPlate("plate = '浙A3FR26'");
         System.out.println(fsPlateToken);
         if (fsPlateToken == null) {
@@ -358,6 +361,7 @@ public class PlateIssueService {
         paramMap.put("OrginazitionId", ToStringUtlis.ORGANIZATION_RID);
         paramMap.put("Tcm", ToStringUtlis.TCMA);
         paramMap.put("BeginDate", cts2hms(beginTime));
+        System.out.println(cts2hms(beginTime));
         paramMap.put("EndDate", cts2hms(endTime));
         //0车牌
         paramMap.put("TokenType", 0);

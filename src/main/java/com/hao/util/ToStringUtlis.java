@@ -19,7 +19,7 @@ public class ToStringUtlis {
      * organizationId=6863eb11-4c2d-4383-b375-acd739aaea2f
      * 原来：118673df928646c68983fe347f25a5a3
      */
-    public static final String ORGANIZATION_RID = "6863eb11-4c2d-4383-b375-acd739aaea2f";
+    public static final String ORGANIZATION_RID = "c37134d28ddc426885303983e1197a83";
 
     public static final String GID = "32BAB824-392F-41AC-90BF-32217C743C7A";
 
