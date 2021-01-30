@@ -8,7 +8,12 @@ package com.hao.dataStructure.tree;
  * @date 2021-01-28 11:06
  **/
 public class ArrBinaryTreeDemo {
-
+    public static void main(String[] args) {
+        int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
+        //创建一个 ArrBinaryTree
+        ArrBinaryTree arrBinaryTree = new ArrBinaryTree(arr);
+        arrBinaryTree.preOrder(); // 1,2,4,5,3,6,7
+    }
 }
 class ArrBinaryTree{
     private int[] arr;//存储数据结点的数组
@@ -16,7 +21,10 @@ class ArrBinaryTree{
     public ArrBinaryTree(int[] arr) {
         this.arr = arr;
     }
-
+    //重载preOrder
+    public void preOrder() {
+        this.preOrder(0);
+    }
     /**
      *
      * @param index 数组的下标

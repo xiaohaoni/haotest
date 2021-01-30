@@ -2,12 +2,14 @@ package com.hao.dataStructure.sort;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
  * 插入排序
+ * 稳定排序
  * 插入排序前
  * 排序前的时间是=2021-01-20 11:54:08
  * 排序前的时间是=2021-01-20 11:54:09
- * */
+ */
 public class InsertSort {
 
     public static void main(String[] args) {
@@ -131,6 +133,22 @@ public class InsertSort {
                 arr[index + 1] = arr[index];
                 index--;
             }
+            if (index + 1 != i) {
+                arr[index + 1] = indexVal;
+            }
+        }
+    }
+
+    public static void insertSort02(int[] arr) {
+        for (int i = 1; i < arr.length - 1; i++) {
+            int indexVal = arr[i];
+            int index = i - 1;
+            //说明从小到打排序，arr[i]<arr[i-1]就交换位置
+            while (index > 0 && indexVal < arr[index]) {
+                arr[index + 1] = arr[index];
+                index--;
+            }
+            //找到插入的位置，将值插入
             if (index + 1 != i) {
                 arr[index + 1] = indexVal;
             }

@@ -16,9 +16,10 @@ public class HeapSort {
         //要求将数组进行升序排序
         int arr[] = {4, 6, 8, 5, 9};
         // 创建要给80000个的随机的数组
-       /* int[] arr = new int[8000000];
-        for (int i = 0; i < 8000000; i++) {
-            arr[i] = (int) (Math.random() * 8000000); // 生成一个[0, 8000000) 数
+        /*int[] arr = new int[10];
+        for (int i = 0; i < 10; i++) {
+            // 生成一个[0, 8000000) 数
+            arr[i] = (int) (Math.random() * 10);
         }*/
 
         System.out.println("排序前");
@@ -41,6 +42,9 @@ public class HeapSort {
         int temp = 0;
         System.out.println("堆排序!!");
         // arr.length / 2 - 1 得到最后一个有孩子节点的节点
+        /**
+         * 需要先将数组成为大顶堆，然后再进行排序
+         * */
         for (int i = arr.length / 2 - 1; i >= 0; i--) {
             adjustHeap(arr, i, arr.length);
         }
@@ -90,5 +94,34 @@ public class HeapSort {
             }
         }
         arr[i] = temp;
+    }
+
+    /**
+     * 功能： 完成 将 以 i 对应的非叶子结点的树调整成大顶堆
+     * 举例  int arr[] = {4, 6, 8, 5, 9}; => i = 1 => adjustHeap => 得到 {4, 9, 8, 5, 6}
+     * 如果我们再次调用  adjustHeap 传入的是 i = 0 => 得到 {4, 9, 8, 5, 6} => {9,6,8,5, 4}
+     *
+     * @param arr    待调整的数组
+     * @param i      表示非叶子结点在数组中索引
+     * @param length 表示对多少个元素继续调整， length 是在逐渐的减少
+     */
+    public static void adjustHeap01(int[] arr, int i, int length) {
+        int temp = arr[i];
+        /**
+         * 找到i的左孩子节点
+         * */
+        for (int k = 2 * i + 1; k < length; k = 2 * k + 1) {
+            if (k + 1 < length && arr[k] < arr[k + 1]) {
+                k++;
+            }
+            if (arr[k] > arr[i]) {
+                arr[i] = arr[k];
+                i = k;
+            } else {
+                break;
+            }
+        }
+        arr[i] = temp;
+
     }
 }
