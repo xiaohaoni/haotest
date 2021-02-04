@@ -22,43 +22,47 @@ public class HutoolUtils {
     // 最大支持机器节点数0~31，一共32个
     //@SuppressWarnings({"PointlessBitwiseExpression", "FieldCanBeLocal"})
     private static final long maxWorkerId = -1L ^ (-1L << workerIdBits);
-    public static void main(String[] args) {
-        System.out.println(NetUtil.getLocalhostStr().hashCode());
 
-       // System.out.println(showflakeId(32,32));
+    public static void main(String[] args) {
+        //System.out.println(NetUtil.getLocalhostStr().hashCode());
+
+        System.out.println(showflakeId(31, 31));
 
     }
+
     /**
      * 0-31
-     * */
+     */
     private static long workerId = 0;
     /**
      * 0-31
-     * */
+     */
     private static long datacenterId = 1;
-    private static Snowflake snowflake = IdUtil.createSnowflake(workerId,datacenterId);
+    private static Snowflake snowflake = IdUtil.createSnowflake(workerId, datacenterId);
+
     @PostConstruct
-    public void init(){
+    public void init() {
         try {
             workerId = NetUtil.ipv4ToLong(NetUtil.getLocalhostStr());
             System.out.println(workerId);
-        }catch (Exception e){
+        } catch (Exception e) {
             workerId = NetUtil.getLocalhostStr().hashCode();
             System.out.println(workerId);
 
         }
 
     }
-    public static synchronized  long snowflakeId(){
+
+    public static synchronized long snowflakeId() {
         return snowflake.nextId();
     }
 
     /**
      * @param workerId     终端ID
      * @param datacenterId 数据中心ID
-     * */
-    public static synchronized  long showflakeId(long datacenterId, long workerId){
-        Snowflake snowflake = IdUtil.createSnowflake(workerId,datacenterId);
+     */
+    public static synchronized long showflakeId(long datacenterId, long workerId) {
+        Snowflake snowflake = IdUtil.createSnowflake(workerId, datacenterId);
         return snowflake.nextId();
     }
 
