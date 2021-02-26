@@ -23,11 +23,7 @@ import java.util.stream.Collectors;
  **/
 public class Guava {
     public static void main(String[] args) {
-        ConcurrentHashMap map = new ConcurrentHashMap();
-        map.put(1,"zhu");
-        AtomicInteger total = new AtomicInteger(0);
-        total.getAndIncrement();
-        System.out.println(total.get());
+        getMultimap();
     }
 
 
@@ -64,6 +60,7 @@ public class Guava {
         multimap.put(1, "b");
         multimap.put(2, "a");
         multimap.put(3, "a");
+        List<String> list = (List<String>) multimap.get(1);
         Set<Integer> integerList = new HashSet<>(multimap.keys());
 
         System.out.println(integerList);

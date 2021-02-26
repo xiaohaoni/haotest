@@ -26,7 +26,9 @@ public class HutoolUtils {
     public static void main(String[] args) {
         //System.out.println(NetUtil.getLocalhostStr().hashCode());
 
-        System.out.println(showflakeId(31, 31));
+       // System.out.println(showflakeId(30, 31));
+        System.out.println(IdUtil.fastUUID());
+
 
     }
 
