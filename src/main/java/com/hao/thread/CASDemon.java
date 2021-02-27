@@ -11,8 +11,9 @@ import java.util.concurrent.atomic.AtomicInteger;
  **/
 public class CASDemon {
     public static void main(String[] args) {
-        AtomicInteger integer = new AtomicInteger(5);
+        /*AtomicInteger integer = new AtomicInteger(5);
         integer.getAndIncrement();
-        integer.compareAndSet(5,100);
+        integer.compareAndSet(5,100);*/
+        System.out.println(CountryEnum.forEachCountryEnum(1).getValue());
     }
 }

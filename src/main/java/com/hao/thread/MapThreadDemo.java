@@ -12,6 +12,10 @@ import java.util.concurrent.ConcurrentHashMap;
  **/
 public class MapThreadDemo {
     public static void main(String[] args) {
+        System.out.println(1 << 30);
+    }
+
+    public void mapMethod(){
         Map<String,String> map = new ConcurrentHashMap<>();
         for (int i = 0; i <= 30; i++) {
             //报:ConcurrentModificationException

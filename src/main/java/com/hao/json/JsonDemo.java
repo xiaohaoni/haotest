@@ -1,6 +1,7 @@
 package com.hao.json;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -21,7 +22,8 @@ public class JsonDemo {
         userList.add(user1);
         userList.add(user2);
         String json = JSON.toJSONString(userList);
-        System.out.println(json);
+        System.out.println("json"+JSONObject.parseObject(String.valueOf(userList)));
+       // System.out.println("json"+JSONObject.parseObject(json));
 
     }
 }

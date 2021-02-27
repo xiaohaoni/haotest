@@ -45,7 +45,8 @@ public class InsertSort {
         for (int i = 1; i < arr.length; i++) {
             //定义待插入的数
             insertVal = arr[i];
-            insertIndex = i - 1; // 即arr[1]的前面这个数的下标
+            insertIndex = i - 1;
+            // 即arr[1]的前面这个数的下标
 
             // 给insertVal 找到插入的位置
             // 说362
@@ -53,7 +54,8 @@ public class InsertSort {
             // 2. insertVal < arr[insertIndex] 待插入的数，还没有找到插入位置
             // 3. 就需要将 arr[insertIndex] 后移
             while (insertIndex >= 0 && insertVal < arr[insertIndex]) {
-                arr[insertIndex + 1] = arr[insertIndex];// arr[insertIndex]
+                arr[insertIndex + 1] = arr[insertIndex];
+                // arr[insertIndex]
                 insertIndex--;
             }
             // 当退出while循环时，说明插入的位置找到, insertIndex + 1
