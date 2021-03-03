@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
  **/
 public class Guava {
     public static void main(String[] args) {
-        getMultimap();
+
     }
 
 

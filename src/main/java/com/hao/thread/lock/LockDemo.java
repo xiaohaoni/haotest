@@ -38,8 +38,8 @@ public class LockDemo {
          } finally {
              lock.unlock();
          }
-
      }*/
+
     static Lock lock = new Lock();
 
     private static void reentryLock() {
