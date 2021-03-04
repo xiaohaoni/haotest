@@ -5,6 +5,7 @@ import com.hao.java8.domain.StaffInfo;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 终止操作
@@ -79,7 +80,7 @@ public class StreamAPI3 {
 
 
     }
-
+//====================================规约与收集==========================================
     /**
      * 规约
      * reduce
@@ -91,9 +92,14 @@ public class StreamAPI3 {
         //reduce(0, Integer::sum);
         Integer sum = listInt.stream().reduce(0, (x, y) -> x + y);
         System.out.println(sum);
+    }
 
-
-
+    /**
+     * 收集
+     * 收集工具：collects
+     * */
+    public  void test4(){
+        List<String> nameList = list.stream().map(StaffInfo::getName).collect(Collectors.toList());
     }
 
     public static void main(String[] args) {

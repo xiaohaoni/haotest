@@ -1,6 +1,6 @@
 package com.hao.dataStructure.linear.stack;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author zrh
@@ -8,5 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * @date 2021-01-11 18:33
  **/
 class OperationTest {
+
+    @Test
+    public void test(){
+        System.out.println("这里");
+    }
 
 }

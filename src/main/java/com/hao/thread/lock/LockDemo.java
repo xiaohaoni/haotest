@@ -2,8 +2,6 @@ package com.hao.thread.lock;
 
 import sun.misc.Lock;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 /**
  * 公平锁&&非公平锁
  *
@@ -39,11 +37,11 @@ public class LockDemo {
              lock.unlock();
          }
      }*/
-
     static Lock lock = new Lock();
 
     private static void reentryLock() {
         try {
+
             lock.lock();
             System.out.println("reentry1");
             reentryLock1();
