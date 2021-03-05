@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectionKey;
-import java.nio.channels.Selector;
-import java.nio.channels.ServerSocketChannel;
-import java.nio.channels.SocketChannel;
+import java.nio.channels.*;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -20,6 +17,26 @@ import java.util.Scanner;
  * @date 2021-03-04 14:02
  **/
 public class TestNonBlockingNio {
+
+    public static void pipe() throws Exception {
+        //发送
+        Pipe pipe = Pipe.open();
+        ByteBuffer buf = ByteBuffer.allocate(1024);
+        Pipe.SinkChannel sinkChannel = pipe.sink();
+        buf.put("通过pipe发送数据".getBytes());
+        buf.flip();
+        sinkChannel.write(buf);
+
+        //3读取数据
+        Pipe.SourceChannel sourceChannel = pipe.source();
+        buf.flip();
+        int len = sourceChannel.read(buf);
+        System.out.println(new String(buf.array(), 0, len));
+        sourceChannel.close();
+        sinkChannel.close();
+
+    }
+
     @Test
     public void noBlockClient() throws Exception {
         SocketChannel socketChannel = SocketChannel.open(new InetSocketAddress("127.0.0.1", 9898));
@@ -47,6 +64,28 @@ public class TestNonBlockingNio {
         //读取本地文件
 
         socketChannel.close();
+    }
+
+
+    public void send() throws Exception {
+        DatagramChannel dc = DatagramChannel.open();
+
+        dc.configureBlocking(false);
+        ByteBuffer buf = ByteBuffer.allocate(1024);
+        //循环发送
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String str = scanner.next();
+            if (str.equals("出去")) {
+                break;
+            }
+            //发送数据给服务端
+            buf.put((new Date().toString() + "\n" + str).getBytes());
+            buf.flip();
+            dc.send(buf, new InetSocketAddress("127.0.0.1", 9898));
+            buf.clear();
+        }
+        dc.close();
     }
 
 
