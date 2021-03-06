@@ -49,9 +49,11 @@ public class TestNonBlockingNio {
 
         //循环发送
         Scanner scanner = new Scanner(System.in);
+        System.out.println("发送方：");
         while (scanner.hasNext()) {
+            System.out.println("发送方：");
             String str = scanner.next();
-            if (str.equals("出去")) {
+            if ("出去".equals(str)) {
                 break;
             }
             //发送数据给服务端
@@ -60,13 +62,11 @@ public class TestNonBlockingNio {
             socketChannel.write(buf);
             buf.clear();
         }
-
         //读取本地文件
-
         socketChannel.close();
     }
 
-
+    @Test
     public void send() throws Exception {
         DatagramChannel dc = DatagramChannel.open();
 
@@ -74,6 +74,7 @@ public class TestNonBlockingNio {
         ByteBuffer buf = ByteBuffer.allocate(1024);
         //循环发送
         Scanner scanner = new Scanner(System.in);
+        System.out.println("next方式接收：");
         while (scanner.hasNext()) {
             String str = scanner.next();
             if (str.equals("出去")) {
@@ -88,9 +89,33 @@ public class TestNonBlockingNio {
         dc.close();
     }
 
+    @Test
+    public void send1() throws Exception {
+        Scanner scan = new Scanner(System.in);
+        // 从键盘接收数据
+        // next方式接收字符串
+        System.out.println("next方式接d收：");
+        // 判断是否还有输入
+        if (scan.hasNext()) {
+            String str1 = scan.next();
+            System.out.println("输入的数据为：" + str1);
+        }
+        scan.close();
+    }
+
 
     public static void main(String[] args) throws Exception {
+        Scanner scan = new Scanner(System.in);
+        // 从键盘接收数据
 
+        // next方式接收字符串
+        System.out.println("next方式接收：");
+        // 判断是否还有输入
+        if (scan.hasNext()) {
+            String str1 = scan.next();
+            System.out.println("输入的数据为：" + str1);
+        }
+        scan.close();
         // blockService();
         //blockClient();
     }

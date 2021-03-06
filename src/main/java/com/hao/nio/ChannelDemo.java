@@ -103,7 +103,7 @@ public class ChannelDemo {
     public static void test3() throws IOException {
         FileChannel in = FileChannel.open(Paths.get("E:\\file\\1.jpg"), StandardOpenOption.READ);
         FileChannel out = FileChannel.open(Paths.get("E:\\file\\5.jpg"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
-        in.transferTo(0, in.size(), out);
+        long l = in.transferTo(0, in.size(), out);
         in.close();
         out.close();
     }
@@ -123,8 +123,6 @@ public class ChannelDemo {
         outMap.put(bytes);
         in.close();
         out.close();
-
-
     }
 
     /**

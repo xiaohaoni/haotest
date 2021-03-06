@@ -1,7 +1,6 @@
 package com.hao.nio;
 
 import java.nio.ByteBuffer;
-import java.nio.channels.Channel;
 
 /**
  * @author zrh
@@ -89,7 +88,8 @@ public class NioDemo {
         System.out.println(buf.limit());
         System.out.println(buf.capacity());
         //拿数据
-        buf.get();
+        byte b = buf.get();
+        System.out.println(b);
 
     }
 }
