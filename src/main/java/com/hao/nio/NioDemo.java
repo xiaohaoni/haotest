@@ -32,7 +32,7 @@ public class NioDemo {
 
     public static void main(String[] args) {
 
-        test3();
+
     }
 
     public static  void  test3(){

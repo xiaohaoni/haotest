@@ -1,5 +1,7 @@
 package com.hao.nio;
 
+import org.junit.jupiter.api.Test;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -69,6 +71,8 @@ public class ChannelDemo {
 
     }
 
+
+
     /**
      * 分散与聚集
      */
@@ -111,7 +115,8 @@ public class ChannelDemo {
     /**
      * 使用直接内存（内存映射的方式）
      */
-    public static void test2() throws IOException {
+    @Test
+    public void test2() throws IOException {
         FileChannel in = FileChannel.open(Paths.get("E:\\file\\1.jpg"), StandardOpenOption.READ);
         FileChannel out = FileChannel.open(Paths.get("E:\\file\\3.jpg"), StandardOpenOption.WRITE, StandardOpenOption.READ, StandardOpenOption.CREATE);
         //内存映射文件

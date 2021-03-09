@@ -18,9 +18,9 @@ public class SingleLinkedListDemo {
 
 		//加入
 		singleLinkedList.add(hero1);
-		singleLinkedList.add(hero4);
 		singleLinkedList.add(hero2);
 		singleLinkedList.add(hero3);
+		singleLinkedList.add(hero4);
 
 		// 测试一下单链表的反转功能
 		System.out.println("原来链表的情况~~");
@@ -31,7 +31,7 @@ public class SingleLinkedListDemo {
 		singleLinkedList.list();
 
 		System.out.println("测试逆序打印单链表, 没有改变链表的结构~~");
-		//reversePrint(singleLinkedList.getHead());
+		reversePrint(singleLinkedList.getHead());
 
 /*
 		//加入按照编号的顺序

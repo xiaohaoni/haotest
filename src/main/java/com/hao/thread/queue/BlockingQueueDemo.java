@@ -1,9 +1,6 @@
 package com.hao.thread.queue;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.SynchronousQueue;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * @author zrh
@@ -13,6 +10,8 @@ import java.util.concurrent.TimeUnit;
  **/
 public class BlockingQueueDemo {
     public static void main(String[] args) {
+        CopyOnWriteArrayList list = new CopyOnWriteArrayList();
+        list.add(1);
         BlockingQueue<String> blockingQueue = new SynchronousQueue<>();
         new Thread(() -> {
             try {
